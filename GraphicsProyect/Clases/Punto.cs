@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraphicsProyect
 {
-    class Punto
+    public class Punto
     {
         private double x;
         private double y;

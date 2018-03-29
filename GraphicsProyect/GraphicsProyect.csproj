@@ -46,18 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Escenario.cs" />
+    <Compile Include="Interfaces\IEscenario.cs" />
+    <Compile Include="Clases\PoligonoCerrado.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Objeto.cs" />
-    <Compile Include="iPoligono.cs" />
-    <Compile Include="PoligonoAbierto.cs" />
+    <Compile Include="Clases\Objeto.cs" />
+    <Compile Include="Interfaces\IPoligono.cs" />
+    <Compile Include="Clases\Poligono.cs" />
+    <Compile Include="Clases\PoligonoAbierto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Punto.cs" />
+    <Compile Include="Clases\Punto.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
