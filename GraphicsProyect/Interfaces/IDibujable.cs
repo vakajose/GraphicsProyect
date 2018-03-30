@@ -6,15 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GraphicsProyect.Interfaces
-
 {
-    interface IEscenario
+    public interface IDibujable
     {
-        List<Objeto> listElem { get; set; }
-        Point Centro { get; set; }
-        bool EjeVisible { set; get; }
-
-        void GuardarEscenario();
-
+        Point PInicial { get; }
+        Point PFinal { get; }
+        Point PCentral { get; set; }
+        
     }
 }

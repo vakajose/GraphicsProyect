@@ -11,10 +11,19 @@ namespace GraphicsProyect.Clases
     {
 
         public PoligonoCerrado(List<Point> puntos) : base(puntos) { }
-       
-        public override void Dibujar()
+
+        public override void Dibujarse(ref Graphics g)
         {
-            
+            Point[] points = Puntos.ToArray();
+            Pen pen = new Pen(Color.Olive);
+            g.DrawPolygon(pen, points);
+        }
+
+        public override void Dibujarse(ref Graphics g, Point eje)
+        {
+            Point[] points = GetAbsolutePoints(eje).ToArray();
+            Pen pen = new Pen(Color.Olive);
+            g.DrawPolygon(pen, points);
         }
     }
 }

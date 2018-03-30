@@ -9,41 +9,65 @@ using System.Threading.Tasks;
 
 namespace GraphicsProyect
 {
-    abstract class Poligono : IPoligono
+    abstract class Poligono : IPoligono, IDibujable
     {
 
         public List<Point> Puntos { get; set; }
 
         public int CantPuntos { get; }
 
+        public Point PInicial { get; }
 
-        public Poligono( List<Point> puntos)
+        public Point PFinal { get; }
+
+        public Point PCentral { get; set ; }
+
+
+        public Poligono(List<Point> puntos)
         {
             this.Puntos = puntos;
             this.CantPuntos = puntos.Count;
         }
+        public Poligono(Point p)
+        {
+            Puntos.Add(p);
+            CantPuntos++;
+            PInicial = p;
+            PCentral = p;
+        }
 
         public void BorrarPunto(int index)
         {
-            throw new NotImplementedException();
+           
         }
 
         public void BorrarPunto(Point punto)
         {
-            throw new NotImplementedException();
+          
         }
 
-        public Point GetPunto(int index)
+        public Point GetPunto(int index) => Puntos[index];
+
+        public void SetPunto(int index, Point punto) => Puntos[index] = punto;
+
+        public void Add(Point p) => Puntos.Add(p);
+        
+        public List<Point> GetAbsolutePoints(Point eje)
         {
-            throw new NotImplementedException();
+            int x;
+            int y;
+            List<Point> absPoints = new List<Point>();
+            foreach(Point p in Puntos)
+            {
+                x = p.X + eje.X;
+                y = p.Y + eje.Y;
+                absPoints.Add(new Point(x,y));
+            }
+
+            return absPoints;
         }
 
-        public Point SetPunto(int index, Point punto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public abstract void Dibujar();
-
+        public abstract void Dibujarse(ref Graphics g);
+        public abstract void Dibujarse(ref Graphics g, Point eje);
     }
 }

@@ -8,18 +8,24 @@ using System.Threading.Tasks;
 
 namespace GraphicsProyect.Clases
 {
-    class Escenario : IEscenario
+    class Escenario: IEscenario
     {
+        
         public Point Centro { get ; set ; }
         public bool EjeVisible { get; set; }
+        public List<Objeto> listElem { get; set ; }
 
         public Escenario(Point centro, bool ejeVisible)
         {
             this.Centro = centro;
             this.EjeVisible = ejeVisible;
+            this.listElem = new List<Objeto>();
 
         }
 
- 
+        public void GuardarEscenario()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
