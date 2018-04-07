@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Dibujante.cs" />
     <Compile Include="Clases\Escenario.cs" />
     <Compile Include="Interfaces\IDibujable.cs" />
     <Compile Include="Interfaces\IEscenario.cs" />

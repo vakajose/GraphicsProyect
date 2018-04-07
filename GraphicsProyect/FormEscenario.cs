@@ -33,7 +33,8 @@ namespace GraphicsProyect
            
             msnlbl.Text = "Click en el cuadro para fijar ejes";
             escenario.Centro = new Point(0, 0);
-            escenario.EjeVisible = false;
+            escenario.EjeVisible = true;
+            ejeVisible.Checked = true;
             PanelDibujo.Location = new Point(15, 88);        
             dimensionarInterfaz();
         }
