@@ -9,15 +9,13 @@ namespace GraphicsProyect.Interfaces
 {
    public interface IPoligono 
     {
-        List<Point> Puntos { get; set; }
-        int CantPuntos { get; }
-
-        Point GetPunto(int index);
-        void SetPunto(int index, Point punto);
+        List<Punto> Puntos { get; set; }
+      
+        Punto GetPunto(int index);
+        void SetPunto(int index, Punto punto);
         void BorrarPunto(int index);
-        void BorrarPunto(Point punto);
         void Dibujarse(ref Graphics g);
-        void Dibujarse(ref Graphics g, Point eje);
+        void Dibujarse(ref Graphics g, Punto eje);
 
     }
 }

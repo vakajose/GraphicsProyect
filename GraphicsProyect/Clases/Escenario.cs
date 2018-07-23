@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace GraphicsProyect.Clases
 {
+    [Serializable]
     class Escenario: IEscenario
     {
         
-        public Point Centro { get ; set ; }
+        public Punto Centro { get ; set ; }
         public bool EjeVisible { get; set; }
-        public List<Objeto> listElem { get; set ; }
+        public List<Objeto> Objetos { get; set ; }
 
-        public Escenario(Point centro, bool ejeVisible)
+        public Escenario(Punto centro, bool ejeVisible)
         {
             this.Centro = centro;
             this.EjeVisible = ejeVisible;
-            this.listElem = new List<Objeto>();
+            this.Objetos = new List<Objeto>();
 
         }
 

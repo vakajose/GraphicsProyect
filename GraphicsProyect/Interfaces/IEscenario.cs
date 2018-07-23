@@ -10,8 +10,8 @@ namespace GraphicsProyect.Interfaces
 {
     interface IEscenario
     {
-        List<Objeto> listElem { get; set; }
-        Point Centro { get; set; }
+        List<Objeto> Objetos { get; set; }
+        Punto Centro { get; set; }
         bool EjeVisible { set; get; }
 
         void GuardarEscenario();

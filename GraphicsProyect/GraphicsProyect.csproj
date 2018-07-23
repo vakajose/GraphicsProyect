@@ -46,11 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Dibujante.cs" />
+    <Compile Include="Clases\Animacion.cs" />
+    <Compile Include="Clases\Graficador.cs" />
+    <Compile Include="Clases\Matriz.cs" />
+    <Compile Include="Clases\Pintor.cs" />
     <Compile Include="Clases\Escenario.cs" />
+    <Compile Include="Clases\Transformacion.cs" />
     <Compile Include="Interfaces\IDibujable.cs" />
     <Compile Include="Interfaces\IEscenario.cs" />
-    <Compile Include="Clases\PoligonoCerrado.cs" />
     <Compile Include="FormEscenario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,7 +63,6 @@
     <Compile Include="Clases\Objeto.cs" />
     <Compile Include="Interfaces\IPoligono.cs" />
     <Compile Include="Clases\Poligono.cs" />
-    <Compile Include="Clases\PoligonoAbierto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clases\Punto.cs" />

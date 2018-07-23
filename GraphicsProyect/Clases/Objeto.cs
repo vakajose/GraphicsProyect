@@ -8,58 +8,76 @@ using GraphicsProyect.Interfaces;
 
 namespace GraphicsProyect
 {
+    [Serializable]
     public class Objeto : IDibujable
     {
-       public List<IPoligono> Poligonos { get; set; }
+        public List<Poligono> Poligonos { get; set; }
+        public Punto Centro { get; set; }
+        public Relatividad relatividad { get; set; }
 
-        public Point PInicial { get; }
-
-        public Point PFinal { get; }
-
-        public Point PCentral { get; set; }
-
-
-
-
-        public Objeto(List<IPoligono> poligonos)
+        [Serializable]
+        public enum Relatividad
         {
-            Poligonos = poligonos;
-            if (poligonos.Count == 0)
-            {
-                PInicial = poligonos[0].GetPunto(0);
-                IPoligono poligono = poligonos[poligonos.Count - 1];
-                PFinal = poligono.GetPunto(poligono.CantPuntos-1);
-                PCentral = poligonos[0].GetPunto(0);
-            }
+            relativo,escenario,absoluto
         }
 
-        public Objeto(IPoligono p)
+        public Objeto(List<Poligono> poligonos)
         {
-            Poligonos = new List<IPoligono>();
+            this.Poligonos = poligonos;
+            relatividad = Relatividad.escenario;
+        }
+
+        public Objeto(Poligono p)
+        {
+            this.Poligonos = new List<Poligono>();
             Poligonos.Add(p);
-            PInicial = p.GetPunto(0);
-            PCentral = p.GetPunto(0);
+            relatividad = Relatividad.escenario;
         }
-
-        public void Add(IPoligono p)
+        public Objeto(Relatividad rel)
+        {
+            Centro = new Punto(0, 0);
+            Poligonos = new List<Poligono>();
+            relatividad = rel;
+        }
+        public void Add(Poligono p)
         {
             Poligonos.Add(p);
         }
-
-        public void Dibujarse(ref Graphics g)
+        public Punto encontrarCentro()
         {
-            foreach(IPoligono pol in Poligonos)
+            double xm=Poligonos[0].Puntos[0].X;
+            double ym= Poligonos[0].Puntos[0].Y; ;
+            double xM= Poligonos[0].Puntos[0].X; ;
+            double yM= Poligonos[0].Puntos[0].Y; ;
+
+            foreach (Poligono poligono in Poligonos)
             {
-                pol.Dibujarse(ref g);
+                foreach (Punto punto in poligono.Puntos)
+                {
+                    double x = punto.X;
+                    double y = punto.Y;
+
+                    if (x > xM) xM = x;
+                    if (y > yM) yM = y;
+                    if (x < xm) xm = x;
+                    if (y < ym) ym = y;
+                }
+            }
+
+            double xC = (xm + xM) / 2;
+            double yC = (ym + yM) / 2;
+            return new Punto(xC, yC);
+        }
+        public void convertirARelativo()
+        {
+            this.Centro = encontrarCentro();
+            this.relatividad = Relatividad.relativo;
+            foreach (Poligono poligono in Poligonos)
+            {
+                poligono.nuevoCentro(this.Centro);
             }
         }
 
-        public void Dibujarse(ref Graphics g, Point eje)
-        {
-            foreach(IPoligono pol in Poligonos)
-            {
-                pol.Dibujarse(ref g, eje);
-            }
-        }
+       
     }
 }

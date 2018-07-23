@@ -8,66 +8,88 @@ using System.Threading.Tasks;
 
 
 namespace GraphicsProyect
-{
-    abstract class Poligono : IPoligono, IDibujable
+{   
+    [Serializable]
+    public class Poligono : IDibujable
     {
 
-        public List<Point> Puntos { get; set; }
+        public List<Punto> Puntos { get; set; }
+        public Punto Centro { get; set; }
+        public TipoPoligono Tipo_Poligono { get; set; }
+        [Serializable]
+        public enum TipoPoligono
+        {
+            Abierto, Cerrado
+        }
 
-        public int CantPuntos { get; }
-
-        public Point PInicial { get; }
-
-        public Point PFinal { get; }
-
-        public Point PCentral { get; set ; }
-
-
-        public Poligono(List<Point> puntos)
+        public Poligono(List<Punto> puntos)
         {
             this.Puntos = puntos;
-            this.CantPuntos = puntos.Count;
+            Centro = new Punto(0, 0);
         }
-        public Poligono(Point p)
+        public Poligono(List<Punto> puntos, TipoPoligono tipo)
         {
+            this.Puntos = puntos;
+            this.Tipo_Poligono = tipo;
+            Centro = new Punto(0, 0);
+        }
+        public Poligono(TipoPoligono tipo)
+        {
+            this.Puntos = new List<Punto>();
+            Centro = new Punto(0, 0);
+            Tipo_Poligono = tipo;
+        }
+        public Poligono(Punto p)
+        {
+            Puntos = new List<Punto>();
             Puntos.Add(p);
-            CantPuntos++;
-            PInicial = p;
-            PCentral = p;
+            Centro = new Punto(0, 0);
+        }
+        public Poligono(Punto p, TipoPoligono tipo)
+        {
+            Puntos = new List<Punto>();
+            Puntos.Add(p);
+            Centro = new Punto(0, 0);
+            Tipo_Poligono = tipo;
         }
 
         public void BorrarPunto(int index)
         {
-           
+            Puntos.RemoveAt(index);
         }
 
-        public void BorrarPunto(Point punto)
+ 
+        public Punto GetPunto(int index) => Puntos[index];
+
+        public void SetPunto(int index, Punto punto) => Puntos[index] = punto;
+
+        public void Add(Punto p) => Puntos.Add(p);
+
+        public void nuevoCentro(Punto nuevoCentro)
         {
-          
+            this.Centro = nuevoCentro;
+            foreach (Punto punto in Puntos)
+            {
+                punto.X = punto.X - nuevoCentro.X;
+                punto.Y = punto.Y - nuevoCentro.Y;
+            }
+
         }
-
-        public Point GetPunto(int index) => Puntos[index];
-
-        public void SetPunto(int index, Point punto) => Puntos[index] = punto;
-
-        public void Add(Point p) => Puntos.Add(p);
         
-        public List<Point> GetAbsolutePoints(Point eje)
+        public List<Punto> GetAbsolutePuntos(Punto eje)
         {
-            int x;
-            int y;
-            List<Point> absPoints = new List<Point>();
-            foreach(Point p in Puntos)
+            double x;
+            double y;
+            List<Punto> absPuntos = new List<Punto>();
+            foreach(Punto p in Puntos)
             {
                 x = p.X + eje.X;
                 y = p.Y + eje.Y;
-                absPoints.Add(new Point(x,y));
+                absPuntos.Add(new Punto(x,y));
             }
 
-            return absPoints;
+            return absPuntos;
         }
 
-        public abstract void Dibujarse(ref Graphics g);
-        public abstract void Dibujarse(ref Graphics g, Point eje);
     }
 }

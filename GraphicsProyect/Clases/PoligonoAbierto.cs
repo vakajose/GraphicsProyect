@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace GraphicsProyect
 {
-    class PoligonoAbierto : Poligono
+    class PoligonoAbierto 
     {
 
-        public PoligonoAbierto(List<Point> puntos) : base(puntos) { }
+        public PoligonoAbierto(List<Point> puntos){ }
 
-        public override void Dibujarse(ref Graphics g)
+        public  void Dibujarse(ref Graphics g)
         {
             Point[] points = Puntos.ToArray();
             Pen pen = new Pen(Color.Olive);
             g.DrawLines(pen, points);
         }
 
-        public override void Dibujarse(ref Graphics g, Point eje)
+        public  void Dibujarse(ref Graphics g, Point eje)
         {
             Point[] points = GetAbsolutePoints(eje).ToArray();
             Pen pen = new Pen(Color.Olive);

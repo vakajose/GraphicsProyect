@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.PanelDibujo = new System.Windows.Forms.Panel();
             this.msnlbl = new System.Windows.Forms.Label();
             this.ejeVisible = new System.Windows.Forms.CheckBox();
@@ -42,6 +43,14 @@
             this.lblLastPoint = new System.Windows.Forms.Label();
             this.lblPunto = new System.Windows.Forms.Label();
             this.btnCentrarEje = new System.Windows.Forms.Button();
+            this.listboxObjetos = new System.Windows.Forms.ListBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.playBtn = new System.Windows.Forms.Button();
+            this.contador = new System.Windows.Forms.Label();
+            this.lblTituloObjetos = new System.Windows.Forms.Label();
+            this.listboxAnimacion = new System.Windows.Forms.ListBox();
+            this.lblTituloAnimacion = new System.Windows.Forms.Label();
+            this.btnCrearAnimacion = new System.Windows.Forms.Button();
             this.rbGrupo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,11 +200,86 @@
             this.btnCentrarEje.UseVisualStyleBackColor = true;
             this.btnCentrarEje.Click += new System.EventHandler(this.btnCentrarEje_Click);
             // 
+            // listboxObjetos
+            // 
+            this.listboxObjetos.FormattingEnabled = true;
+            this.listboxObjetos.Location = new System.Drawing.Point(345, 20);
+            this.listboxObjetos.Name = "listboxObjetos";
+            this.listboxObjetos.Size = new System.Drawing.Size(73, 56);
+            this.listboxObjetos.TabIndex = 17;
+            this.listboxObjetos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listboxObjetos_KeyUp);
+            // 
+            // timer
+            // 
+            this.timer.Interval = 10;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // playBtn
+            // 
+            this.playBtn.Location = new System.Drawing.Point(504, 53);
+            this.playBtn.Name = "playBtn";
+            this.playBtn.Size = new System.Drawing.Size(58, 23);
+            this.playBtn.TabIndex = 18;
+            this.playBtn.Text = "PLAY";
+            this.playBtn.UseVisualStyleBackColor = true;
+            this.playBtn.Click += new System.EventHandler(this.playBtn_Click);
+            // 
+            // contador
+            // 
+            this.contador.AutoSize = true;
+            this.contador.Location = new System.Drawing.Point(711, 37);
+            this.contador.Name = "contador";
+            this.contador.Size = new System.Drawing.Size(0, 13);
+            this.contador.TabIndex = 19;
+            // 
+            // lblTituloObjetos
+            // 
+            this.lblTituloObjetos.AutoSize = true;
+            this.lblTituloObjetos.Location = new System.Drawing.Point(353, 9);
+            this.lblTituloObjetos.Name = "lblTituloObjetos";
+            this.lblTituloObjetos.Size = new System.Drawing.Size(56, 13);
+            this.lblTituloObjetos.TabIndex = 20;
+            this.lblTituloObjetos.Text = "OBJETOS";
+            // 
+            // listboxAnimacion
+            // 
+            this.listboxAnimacion.FormattingEnabled = true;
+            this.listboxAnimacion.Location = new System.Drawing.Point(424, 20);
+            this.listboxAnimacion.Name = "listboxAnimacion";
+            this.listboxAnimacion.Size = new System.Drawing.Size(74, 56);
+            this.listboxAnimacion.TabIndex = 21;
+            this.listboxAnimacion.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listboxAnimacion_KeyUp);
+            // 
+            // lblTituloAnimacion
+            // 
+            this.lblTituloAnimacion.AutoSize = true;
+            this.lblTituloAnimacion.Location = new System.Drawing.Point(421, 9);
+            this.lblTituloAnimacion.Name = "lblTituloAnimacion";
+            this.lblTituloAnimacion.Size = new System.Drawing.Size(81, 13);
+            this.lblTituloAnimacion.TabIndex = 22;
+            this.lblTituloAnimacion.Text = "ANIMACIONES";
+            // 
+            // btnCrearAnimacion
+            // 
+            this.btnCrearAnimacion.Location = new System.Drawing.Point(504, 25);
+            this.btnCrearAnimacion.Name = "btnCrearAnimacion";
+            this.btnCrearAnimacion.Size = new System.Drawing.Size(58, 23);
+            this.btnCrearAnimacion.TabIndex = 23;
+            this.btnCrearAnimacion.Text = "CREAR";
+            this.btnCrearAnimacion.UseVisualStyleBackColor = true;
+            // 
             // FormEscenario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 661);
+            this.Controls.Add(this.btnCrearAnimacion);
+            this.Controls.Add(this.lblTituloAnimacion);
+            this.Controls.Add(this.listboxAnimacion);
+            this.Controls.Add(this.lblTituloObjetos);
+            this.Controls.Add(this.contador);
+            this.Controls.Add(this.playBtn);
+            this.Controls.Add(this.listboxObjetos);
             this.Controls.Add(this.btnCentrarEje);
             this.Controls.Add(this.lblPunto);
             this.Controls.Add(this.lblLastPoint);
@@ -235,6 +319,14 @@
         private System.Windows.Forms.Label lblLastPoint;
         private System.Windows.Forms.Label lblPunto;
         private System.Windows.Forms.Button btnCentrarEje;
+        private System.Windows.Forms.ListBox listboxObjetos;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button playBtn;
+        private System.Windows.Forms.Label contador;
+        private System.Windows.Forms.Label lblTituloObjetos;
+        private System.Windows.Forms.ListBox listboxAnimacion;
+        private System.Windows.Forms.Label lblTituloAnimacion;
+        private System.Windows.Forms.Button btnCrearAnimacion;
     }
 }
 
