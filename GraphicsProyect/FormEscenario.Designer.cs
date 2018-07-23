@@ -51,6 +51,8 @@
             this.listboxAnimacion = new System.Windows.Forms.ListBox();
             this.lblTituloAnimacion = new System.Windows.Forms.Label();
             this.btnCrearAnimacion = new System.Windows.Forms.Button();
+            this.Guardar = new System.Windows.Forms.Button();
+            this.Cargar = new System.Windows.Forms.Button();
             this.rbGrupo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -268,11 +270,33 @@
             this.btnCrearAnimacion.Text = "CREAR";
             this.btnCrearAnimacion.UseVisualStyleBackColor = true;
             // 
+            // Guardar
+            // 
+            this.Guardar.Location = new System.Drawing.Point(568, 27);
+            this.Guardar.Name = "Guardar";
+            this.Guardar.Size = new System.Drawing.Size(60, 23);
+            this.Guardar.TabIndex = 24;
+            this.Guardar.Text = "Guardar";
+            this.Guardar.UseVisualStyleBackColor = true;
+            this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
+            // 
+            // Cargar
+            // 
+            this.Cargar.Location = new System.Drawing.Point(568, 53);
+            this.Cargar.Name = "Cargar";
+            this.Cargar.Size = new System.Drawing.Size(60, 23);
+            this.Cargar.TabIndex = 25;
+            this.Cargar.Text = "Cargar";
+            this.Cargar.UseVisualStyleBackColor = true;
+            this.Cargar.Click += new System.EventHandler(this.Cargar_Click);
+            // 
             // FormEscenario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 661);
+            this.Controls.Add(this.Cargar);
+            this.Controls.Add(this.Guardar);
             this.Controls.Add(this.btnCrearAnimacion);
             this.Controls.Add(this.lblTituloAnimacion);
             this.Controls.Add(this.listboxAnimacion);
@@ -327,6 +351,8 @@
         private System.Windows.Forms.ListBox listboxAnimacion;
         private System.Windows.Forms.Label lblTituloAnimacion;
         private System.Windows.Forms.Button btnCrearAnimacion;
+        private System.Windows.Forms.Button Guardar;
+        private System.Windows.Forms.Button Cargar;
     }
 }
 

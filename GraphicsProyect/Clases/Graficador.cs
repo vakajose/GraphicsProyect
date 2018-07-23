@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GraphicsProyect.Clases
 {
-    [Serializable]
+    [Serializable()] 
     class Graficador
     {
         public Escenario Escenario { get; set; }
-        public Pintor Pintor { get; set; }
+        [NonSerialized()] public Pintor Pintor;
         public List<Animacion> Animaciones { get; set; }
 
         public Graficador(Escenario escenario, Pintor pintor, List<Animacion> Animaciones)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphicsProyect.Clases
 {
-    [Serializable]
+    
     class Pintor
     {
         public Graphics Gr { get; set; }

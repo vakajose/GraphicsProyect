@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace GraphicsProyect
 {
     public partial class FormEscenario : Form 
@@ -158,7 +158,7 @@ namespace GraphicsProyect
                 nPoligonos = 0;
                 nPuntos = 0;
                 actEtiquetas();
-                listboxObjetos.Items.Add(nObjetos);
+               
                 PanelDibujo.Refresh();
             }
             else
@@ -264,11 +264,28 @@ namespace GraphicsProyect
 
         private void actEtiquetas()
         {
+            nObjetos = G.Escenario.Objetos.Count;
             lblPol.Text = "Total pol: " + nPoligonos;
             lblObjeto.Text = "Total: " + nObjetos;
             lblPunto.Text = "#Puntos: " + nPuntos;
-            
-
+            listboxObjetos.Items.Clear(); int i = 1;
+            foreach(Objeto obj in G.Escenario.Objetos)
+            {
+                if (obj.relatividad == Objeto.Relatividad.relativo)
+                {
+                    listboxObjetos.Items.Add(i);
+                    i++;
+                }
+            }
+            listboxAnimacion.Items.Clear(); i = 1;
+            if(G.Animaciones != null)
+            {
+                foreach (Animacion ani in G.Animaciones)
+                {
+                    listboxAnimacion.Items.Add(i);
+                    i++;
+                }
+            }
         }
         private void reiniciarTemp()
         {
@@ -347,6 +364,66 @@ namespace GraphicsProyect
             {
                 G.Animaciones.RemoveAt(listboxAnimacion.SelectedIndex);
                 listboxAnimacion.Items.RemoveAt(listboxAnimacion.Items.Count - 1);
+            }
+        }
+
+       
+
+        private void Guardar_Click(object sender, EventArgs e)
+        {
+            save();
+        }
+        private void save()
+        {
+            try
+            {
+                using (System.Windows.Forms.SaveFileDialog dialog = new SaveFileDialog())
+                {
+                    if (dialog.ShowDialog()== DialogResult.OK)
+                    {
+                        using (Stream st = File.Open(dialog.FileName,FileMode.Create))
+                        {
+                            var binfor = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                            binfor.Serialize(st, G);
+                            MessageBox.Show("Se ha guardado de manera correcta");
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void Cargar_Click(object sender, EventArgs e)
+        {
+            load();
+        }
+        private void load()
+        {
+            try
+            {
+                using (System.Windows.Forms.OpenFileDialog dialog = new OpenFileDialog())
+                {
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (Stream st = File.Open(dialog.FileName, FileMode.Open))
+                        {
+                            var binfor = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                            G = (Graficador) binfor.Deserialize(st);
+                            PanelDibujo.Refresh();
+                            actEtiquetas();
+                            MessageBox.Show("CARGADO");
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
