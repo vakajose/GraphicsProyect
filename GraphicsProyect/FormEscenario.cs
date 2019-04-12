@@ -37,9 +37,19 @@ namespace GraphicsProyect
             ejeVisible.Checked = true;
             PanelDibujo.Location = new Point(15, 88);       //caso especial para usar point 
             timer.Stop();
-            Graphics gr = PanelDibujo.CreateGraphics();
+            Graphics gr = PanelDibujo.CreateGraphics();   
             G.Pintor = new Pintor(ref gr);
+            //creo una animacion por defecto
+            Animacion ani = new Animacion();
+                ani.addMatriz(new Matriz(1.005, true));
+                ani.addMatriz(new Matriz(2.0));
+                ani.addMatriz(new Matriz(2, 0));
+                List<Animacion> anis = new List<Animacion>();
+                anis.Add(ani);
+                G.Animaciones = anis;
+            //fin crear animacion por defecto 
             dimensionarInterfaz();
+            actEtiquetas();
             
         }
         //al pintar formulario
