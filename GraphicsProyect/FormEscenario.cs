@@ -40,13 +40,13 @@ namespace GraphicsProyect
             Graphics gr = PanelDibujo.CreateGraphics();   
             G.Pintor = new Pintor(ref gr);
             //creo una animacion por defecto
-            Animacion ani = new Animacion();
-                ani.addMatriz(new Matriz(1.005, true));
-                ani.addMatriz(new Matriz(2.0));
-                ani.addMatriz(new Matriz(2, 0));
-                List<Animacion> anis = new List<Animacion>();
+            Animacion ani = new Animacion(); //creo una animacion vacia
+                ani.addMatriz(new Matriz(1.005, true)); // le inserto una matriz de escalamiento que crece
+                ani.addMatriz(new Matriz(2.0)); //le inserto una matriz de rotacion con angulo 2
+                ani.addMatriz(new Matriz(2, 0)); //le inserto una matriz de trslacion en eje x =2, y= 0
+                List<Animacion> anis = new List<Animacion>(); //añado la animacion a una lista de animaciones
                 anis.Add(ani);
-                G.Animaciones = anis;
+                G.Animaciones = anis; // seteo la lista en el campo animaciones de mi GRAFICADOR
             //fin crear animacion por defecto 
             dimensionarInterfaz();
             actEtiquetas();
